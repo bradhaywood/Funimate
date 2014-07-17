@@ -12,24 +12,29 @@
     </div>
 </div>
     <script type="text/javascript">
-    funimate.getObjectById('heading')
-    .addEventListener('click', function() {
+    var heading = funimate.getObjectById('heading'),
+        message = funimate.getObjectByClass('message')[0];
+
+    heading.addEventListener('click', function() {
         this.anim('hide', 250); 
     });
 
-    funimate.getObjectByClass('message')[0]
-    .addEventListener('click', function() {
-        funimate.getObjectById('heading').anim('show', 250);
-        setTimeout(function() { funimate.getObjectById('heading').anim('move', '40px', '70px', '0px', 1000); }, 1000);
-        setTimeout(function() { funimate.getObjectById('heading').anim('fontSize', 80, 1000) }, 3000);
+    message.addEventListener('click', function() {
+        heading.anim('show', 250);
+        funimate.after(1000, function() {
+            heading.anim('move', '40px', '70px', '0px', 1000);
+        });
+        funimate.after(3000, function() {
+            heading.anim('fontSize', 80, 1000);
+        });
     });
 
     funimate.after(5000, function() {
-        funimate.getObjectByClass('message')[0].anim('fontSize', 50, 1000);
+        message.anim('fontSize', 50, 1000);
     });
 
     funimate.after(7000, function() {
-        funimate.getObjectByClass('message')[0].anim('fontSize', 15, 1000);
+        message.anim('fontSize', 15, 1000);
     });
         
     </script>
